@@ -4,6 +4,7 @@ A novel Kalman Filter-Guided Sensor Fusion For Robust Robot Object Tracking in D
 
 **SMART-TRACK** is a ROS2-based framework designed for real-time, precise detection and tracking of multiple objects in dynamic environments. By combining object detection techniques with Kalman Filter estimators in a feedback manner, SMART-TRACK maintains robust tracking continuity even when direct measurements are intermittent or fail.
 
+[![IEEE](https://img.shields.io/badge/IEEE-Journal%20Paper-blue)](https://doi.org/10.1109/JSEN.2024.3505939)
 # Citation
 If you find this work useful, please **STAR this repositry**. If you use this work in your research, **please cite our publication**
 ```
