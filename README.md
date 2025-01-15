@@ -2,20 +2,30 @@
 
 A novel Kalman Filter-Guided Sensor Fusion For Robust Robot Object Tracking in Dynamic Environments.
 
-**SMART-TRACK** is a ROS2-based framework designed for real-time, precise detection and tracking of multiple objects in dynamic environments. By combining advanced object detection techniques with Kalman Filter estimators, SMART-TRACK maintains robust tracking continuity even when direct measurements are intermittent or fail.
+**SMART-TRACK** is a ROS2-based framework designed for real-time, precise detection and tracking of multiple objects in dynamic environments. By combining object detection techniques with Kalman Filter estimators in a feedback manner, SMART-TRACK maintains robust tracking continuity even when direct measurements are intermittent or fail.
 
 # Citation
 If you find this work useful, please STAR this repositry. If you use this work in your research, please cite our publication
 ```
-@misc{gabr2024smarttracknovelkalmanfilterguided,
-      title={SMART-TRACK: A Novel Kalman Filter-Guided Sensor Fusion For Robust UAV Object Tracking in Dynamic Environments}, 
-      author={Khaled Gabr and Mohamed Abdelkader and Imen Jarraya and Abdullah AlMusalami and Anis Koubaa},
-      year={2024},
-      eprint={2410.10409},
-      archivePrefix={arXiv},
-      primaryClass={cs.RO},
-      url={https://arxiv.org/abs/2410.10409}, 
-}
+@ARTICLE{10778212,
+
+  author={Abdelkader, Mohamed and Gabr, Khaled and Jarraya, Imen and AlMusalami, Abdullah and Koubaa, Anis},
+
+  journal={IEEE Sensors Journal}, 
+
+  title={SMART-TRACK: A Novel Kalman Filter-Guided Sensor Fusion for Robust UAV Object Tracking in Dynamic Environments}, 
+
+  year={2025},
+
+  volume={25},
+
+  number={2},
+
+  pages={3086-3097},
+
+  keywords={Autonomous aerial vehicles;Radar tracking;Sensors;Kalman filters;Accuracy;State estimation;YOLO;Target tracking;Real-time systems;Drones;Drone detection and tracking;Kalman filter (KF);object tracking;sensor fusion},
+
+  doi={10.1109/JSEN.2024.3505939}}
 ```
 
 Thank you!
@@ -47,9 +57,8 @@ In sensor fusion and state estimation for object detection and localization, the
 
 - **Robust Multi-Target Tracking**: Maintains continuous tracking even when object detections are intermittent or fail.
 - **Measurement Augmentation**: Uses Kalman Filter feedback to augment measurements, enhancing detection reliability.
-- **Versatile Sensor Integration**: Adaptable to various sensor types (e.g., LiDAR, depth cameras) by transforming KF predictions into the sensor's frame.
+- **Versatile Sensor Integration**: Adaptable to multiple sensor types (e.g., LiDAR, depth cameras) by transforming KF predictions into the sensor's frame.
 - **ROS2 Compatibility**: Fully compatible with ROS2, facilitating integration into modern robotic systems.
-- **Open-Source Implementation**: Provides an open-source ROS2-compatible implementation for broader adaptation and further advancements.
 
 ## Framework Architecture
 
@@ -80,23 +89,18 @@ This diagram illustrates the **SMART-TRACK** workflow for robust UAV object trac
   - `cv_bridge`
 
 ### Setup
+**For quick setup, you can check the docker image we provide with this repo in the [docker](https://github.com/mzahana/smart_track/tree/main/docker) sub-directory, and follow the [README](https://github.com/mzahana/smart_track/blob/main/docker/README.md) in there.**. Otherwise, you can follow the following steps.
 
-1. **Clone the SMART-TRACK Repository**
-
-   ```bash
-   cd ~/ros2_ws/src
-   git clone https://github.com/mzahana/SMART-TRACK smart_track
-   ```
-
-2. **Install YOLOv8**
+1. **Install YOLOv8**
 
    SMART-TRACK uses YOLOv8 for object detection. Ensure YOLOv8 is installed before proceeding.
+   - You can install YOLO provided by the [ultralytics](https://github.com/ultralytics/ultralytics) package using `pip install ultralytics`
 
-   - Clone [yolov8_ros](https://github.com/mgonzs13/yolov8_ros/releases/tag/2.0.1) and use release `2.0.1`, which we tested with YOLOv8 at commit `b638c4ed`.
+   - To interface YOLO with ROS 2, you can use [yolo_ros](https://github.com/mgonzs13/yolo_ros) package. **However**, we use our fork [yolov8_ros](https://github.com/mzahana/yolov8_ros), which we tested with YOLOv8.
 
      ```bash
      cd ~/ros2_ws/src
-     git clone -b 2.0.1 https://github.com/mgonzs13/yolov8_ros.git
+     git clone https://github.com/mzahana/yolov8_ros
      pip3 install -r yolov8_ros/requirements.txt
      cd ~/ros2_ws
      rosdep install --from-paths src --ignore-src -r -y
@@ -115,7 +119,13 @@ This diagram illustrates the **SMART-TRACK** workflow for robust UAV object trac
      git clone -b ros2_humble https://github.com/mzahana/multi_target_kf.git
      ```
 
-5. **Build the ROS2 Workspace**
+5. **Clone the SMART-TRACK Repository**
+
+   ```bash
+   cd ~/ros2_ws/src
+   git clone https://github.com/mzahana/smart_track 
+   ```
+6. **Build the ROS2 Workspace**
 
    ```bash
    cd ~/ros2_ws
@@ -146,7 +156,7 @@ To run the pose estimator, follow these steps:
 
    - This launch file starts the pose estimation node that processes YOLO detections to estimate the poses of detected objects.
 
-3. **Optional: Run the Kalman Filter Tracker**
+3. **Run the Kalman Filter Tracker**
 
    - The `yolo2pose_node.py` accepts Kalman Filter estimations of the target's 3D position to implement the KF-guided measurement algorithm for more robust state estimation.
    - Launch the Kalman Filter tracker:
