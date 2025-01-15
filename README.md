@@ -5,26 +5,16 @@ A novel Kalman Filter-Guided Sensor Fusion For Robust Robot Object Tracking in D
 **SMART-TRACK** is a ROS2-based framework designed for real-time, precise detection and tracking of multiple objects in dynamic environments. By combining object detection techniques with Kalman Filter estimators in a feedback manner, SMART-TRACK maintains robust tracking continuity even when direct measurements are intermittent or fail.
 
 # Citation
-If you find this work useful, please STAR this repositry. If you use this work in your research, please cite our publication
+If you find this work useful, please **STAR this repositry**. If you use this work in your research, **please cite our publication**
 ```
 @ARTICLE{10778212,
-
   author={Abdelkader, Mohamed and Gabr, Khaled and Jarraya, Imen and AlMusalami, Abdullah and Koubaa, Anis},
-
   journal={IEEE Sensors Journal}, 
-
   title={SMART-TRACK: A Novel Kalman Filter-Guided Sensor Fusion for Robust UAV Object Tracking in Dynamic Environments}, 
-
   year={2025},
-
   volume={25},
-
   number={2},
-
   pages={3086-3097},
-
-  keywords={Autonomous aerial vehicles;Radar tracking;Sensors;Kalman filters;Accuracy;State estimation;YOLO;Target tracking;Real-time systems;Drones;Drone detection and tracking;Kalman filter (KF);object tracking;sensor fusion},
-
   doi={10.1109/JSEN.2024.3505939}}
 ```
 
